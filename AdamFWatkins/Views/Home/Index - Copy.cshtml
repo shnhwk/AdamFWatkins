@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AdamFWatkins.Models.SocialMediaLink>
+
+@{
+    ViewBag.Title = "Adam F Watkins Illustration";
+}
+
+
+@section BadgeContent{
+
+    <div class="RedsGuy">
+       <img src="~/Images/RedsGuy.png" />
+    </div>
+
+}
+
+<table class="HomeTable">
+    <tr>
+        <td class="HomeLogoBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Adam F. Watkins", "Index", null, new { @class="logo", @title="Adam F. Watkins"})
+            </div>
+        </td>
+        <td class="HomeLogoBgRight"></td>
+    </tr>
+    <tr>
+        <td class="HomeSketchesBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("View my illustrations", "Index", "Illustrations" ,null, new { @class="illustrations", @title="View my illustrations"})
+                @Html.ActionLink("View my sketches", "Index", "Sketches", null, new { @class="sketches", @title="View my sketches"})
+            </div>
+        </td>
+        <td class="HomeContactBlogBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Contact me", "Index", "Contact" ,null, new { @class="contact", @title="Contact me"})
+                <a href="http://adamfwatkinsblog.tumblr.com/" target="_blank" class="blog">Visit my blog</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="HomeAboutBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Bio", "Index", "Bio", null, new { @class="about", @title="Bio"})
+                @Html.Partial("_SocialMediaLinks", new AdamFWatkins.Models.dbContext().SocialMediaLinks.ToList())
+
+            </div>
+        </td>
+        <td class="HomeBooksBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Books", "Index", "Books", null, new { @class="books", @title="My Books"})
+            </div>
+        </td>
+    </tr>
+</table>

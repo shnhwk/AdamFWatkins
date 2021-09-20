@@ -1,0 +1,87 @@
+﻿@model IEnumerable<AdamFWatkins.Models.SiteText>
+
+
+<div id="about" class="section">
+    <h3 class="section-height">About Adam</h3>
+</div>
+
+<!-- ****************************************** PARALLAX IMAGE 2 ****************************************** -->
+<div class="parallax2">
+    <div class="parallax-inner2">
+        <div class="container">
+            <!--Container-->
+            <div class="row">
+                <!--Row-->
+                <div class="col-md-12 text-center">
+                    <div class="s-a" data-effect="onlyfade" data-delay="0">
+                        <!--Animation-->
+                        @*<i class="fa fa-quote-left fa-2x parallax-quote-icon"></i>*@
+                        <span class="quote">
+                            @Html.Raw(@Model.Where(l => l.key == "BioQuote").FirstOrDefault().text.Trim())
+                        </span>
+                        @*<i class="fa fa-quote-right fa-2x parallax-quote-icon"></i>*@
+                    </div><!--Animation End-->
+                </div>
+            </div><!--Row End-->
+            @*<div class="row">
+                <!--Row-->
+                <div class="col-md-2 col-md-offset-8 text-center">
+                    <div class="s-a" data-effect="onlyfade" data-delay="500">
+                        <!--Animation-->
+                        <span class="quote-author">
+                            @Html.Raw(@Model.Where(l => l.key == "BioQuoteAuthor").FirstOrDefault().text.Trim())
+                        </span>
+                    </div><!--Animation End-->
+                </div>
+            </div><!--Row End-->*@
+        </div><!--Container End-->
+    </div><!--parallax-inner2 End-->
+</div><!--parallax2-End-->
+<!-- ****************************************** PARALLAX IMAGE 2 END ****************************************** -->
+
+
+<div class="container text-center">
+    <!--Container-->
+
+    <div class="row">
+        <!--Row-->
+        <div class="sub-section-border margin-top-40 col-md-10 col-md-offset-1">
+            <h3 class="sub-section-height">
+                @Html.Raw(@Model.Where(l => l.key == "BioTop").FirstOrDefault().text.Trim())
+            </h3>
+        </div>
+    </div><!--Row End-->
+    <div class="row margin-top-30">
+        <!--Row-->
+        <div class="col-md-12">
+            <p class="paragraph">
+                @Html.Raw(@Model.Where(l => l.key == "BioBottom").FirstOrDefault().text.Trim())
+            </p>
+        </div>
+    </div><!--Row End-->
+
+    <div class="row">
+        <!--Row-->
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 text-center  margin-top-60">
+            <div class="team-single">
+                <div class="team-social">
+                    @Html.Partial("_SocialMediaLinks3x", new AdamFWatkins.Models.dbContext().SocialMediaLinks.ToList())
+                </div>
+                <div class="s-a" data-effect="onlyfade" data-delay="0">
+                    <!--Animation-->
+                    <img src="@Url.Content("~/Images/Adam_Face.jpg")" alt=" ..." width="80%" class="img-circle img-border">
+                </div><!--Animation End-->
+            </div>
+            <div style="height: 200px;">
+                <div class="s-a" data-effect="frombottom" data-delay="100">
+                    <!--Animation-->
+                    <h3 class="color">Adam Watkins</h3>
+                    @*<p class="paragraph">Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>*@
+  
+                </div><!--Animation End-->
+            </div>
+        </div>
+
+    </div><!--Row End-->
+
+</div><!--Container End-->

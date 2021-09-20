@@ -1,0 +1,104 @@
+﻿@model IEnumerable<AdamFWatkins.Models.Illustration>
+
+@{
+    ViewBag.Title = "Illustrations by Adam F Watkins";
+}
+
+
+@section BadgeContent{
+    <div class="PageTextImg">
+        <img src="~/Images/PageText.png" alt="Page @ViewBag.CurrentPage" title="Page @ViewBag.CurrentPage"/>
+    </div>
+   <div class="PageNum">
+       @ViewBag.CurrentPage 
+   </div>
+
+}
+
+<table class="HalfPaperTable">
+    <tr>
+        <td class="HalfPaperLogoBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Adam F. Watkins", "Index", "Home", null, new { @class = "logo", @title = "Adam F. Watkins" })
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="halfPaperMiddleBg">
+            <div class="TableCellPositionFix">
+                <div class="SketchesContent">
+                
+                    <div class="IllustrationsTitle SlantedText">My Illustrations</div>
+
+                   <table>
+                       @{
+  
+                           //repeatdirection = Horizontal, RepeatColumns = 4
+                           const int NumberOfColumns = 6;
+                           int skip = 0;
+                           var items = Model.Skip(skip).Take(NumberOfColumns);
+
+                           while (items.Count() > 0)
+                           {
+                               <tr>
+                                    @foreach (var item in items) {
+                                       <td>
+                                       
+
+
+                                           <a class="fancybox" rel="group" href="@Url.Content("~/Images/Illustrations/full/")@item.fullImage.Trim()" title="@item.description.Trim()">
+                                               <img src="@Url.Content("~/Images/Illustrations/thumbs/")@item.thumbnail.Trim()" alt="" />
+                                           </a>
+
+
+
+                                       </td>
+                                    }
+                               </tr>
+                                skip += NumberOfColumns;
+                                items = Model.Skip(skip).Take(NumberOfColumns);
+                                }
+                       }
+                   
+         
+ 
+                   </table>
+
+
+                    <div class="ViewMoreButton">
+                        <a href="@Url.Action("Page", "Illustrations", new { pageNum = @ViewBag.NextPage })" title="Next Page" style="display:@ViewBag.ShowMoreButtonVisible">
+                            <img src="@Url.Content("~/Images/SeeMoreButton.jpg")" />
+                        </a>
+                    </div>
+
+                    <div class="BackButton">
+                        <a href="@Url.Action("Page", "Illustrations", new { pageNum = @ViewBag.PreviousPage })" title="Back" style="display:@ViewBag.ShowBackButtonVisible">
+                            <img src="@Url.Content("~/Images/BackButton.jpg")" />
+                        </a>
+                    </div>
+
+                </div>
+           </div>
+
+        </td>
+    </tr>
+
+</table>
+
+
+@Scripts.Render("~/bundles/fancybox")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".fancybox").fancybox({
+            openEffect: 'none',
+            closeEffect: 'none',
+            helpers: {
+                title: {
+                    type: 'outside'
+                }
+            }
+        });
+    });
+</script>
+ 

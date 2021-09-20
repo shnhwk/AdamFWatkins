@@ -1,0 +1,136 @@
+﻿@model AdamFWatkins.Models.Book
+
+@{
+    ViewBag.Title = @Model.title.Trim() + " by Adam F Watkins";
+}
+
+@section BadgeContent{
+
+    <div class="RedsGuy">
+        <img src="~/Images/RedsGuy.png" />
+    </div>
+}
+
+
+<table class="FullPaperTable">
+    <tr>
+        <td class="FullPaperLogoBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Adam F. Watkins", "Index", "Home", null, new { @class = "logo", @title = "Adam F. Watkins" })
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperMiddleBg">
+            <div class="TableCellPositionFix">
+                <div class="BookDetailsContent">
+
+                    <div class="BookTitle SlantedText">@Model.title.Trim()</div>
+
+                    <div class="BookText SlantedText">
+                        @Model.text.Trim()
+                    </div>
+
+                    <div class="BookDetailsMainImage">
+                        <img src="@Url.Content("~/Images/Books/full/")@Model.coverImage.Trim()" alt="@Model.title.Trim()"  title="@Model.title.Trim()" />
+                    </div>
+
+                    <div class="BookStapleFix">
+                    </div>
+
+                    @if (@Model.purchaseUrl.Trim() != "")
+                    {
+                                                 
+                        <div class="BookBuyItNow">
+                            @*                            <a href="@Model.purchaseUrl.Trim()" target="_blank">
+                                <img src="@Url.Content("~/Images/BuyItNow.png")" alt="Buy @Model.title.Trim() now"  title="Buy @Model.title.Trim() now" />
+                            </a>*@
+
+
+                            <a class="fancybox" rel="" href="#inline" title="Buy @Model.title.Trim() now">
+                                <img src="@Url.Content("~/Images/BuyItNow.png")" alt="Buy @Model.title.Trim() now" />
+                            </a>
+                            <div id="inline" style="display: none; position: relative">
+                                <img src="@Url.Content("~/Images/popup.jpg")" />
+
+                                <a href="@Model.purchaseUrl3.Trim()" target="_blank" 
+                                    style="position: absolute;top:85px;height: 181px;width: 430px;left:90px; display:block; background-image:url(about:blank);">
+                                </a>
+
+                                <a href="@Model.purchaseUrl2.Trim()" target="_blank" 
+                                    style="position: absolute;bottom: 193px;height: 153px;width: 330px;left: 125px;display:block; background-image:url(about:blank);">  
+                                </a>
+
+                                <a href="@Model.purchaseUrl.Trim()" target="_blank" 
+                                    style="position: absolute;bottom: 27px;height: 135px;width: 300px;left: 145px;display:block; background-image:url(about:blank);"></a>
+
+                            </div>
+
+                        </div>
+                    }
+
+                    <div class="BookDetailThumbs">
+                        <table>
+                            @{
+  
+                                //repeatdirection = Horizontal, RepeatColumns = 4
+                                const int NumberOfColumns = 1;
+                                int skip = 0;
+                                var items = Model.bookThumbs.OrderBy(t => t.displayOrder).Skip(skip).Take(NumberOfColumns);
+
+                                while (items.Count() > 0)
+                                {
+                                <tr>
+                                    @foreach (var item in items)
+                                    {
+                                        <td>
+                                            <a class="fancybox" rel="group" href="@Url.Content("~/Images/Books/full/")@item.fullImage.Trim()" title="@item.description.Trim()">
+                                                <img src="@Url.Content("~/Images/Books/thumbs/")@item.thumbnail.Trim()" alt="" />
+                                            </a>
+                                        </td>
+                                    }
+                                </tr>
+                                    skip += NumberOfColumns;
+                                    items = Model.bookThumbs.OrderBy(t => t.displayOrder).Skip(skip).Take(NumberOfColumns);
+                                }
+                            }
+                        </table>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperBottomBg"></td>
+    </tr>
+
+    <tr>
+        <td class="fullPaperFooterBg">
+            <div class="BackButton">
+                <a href="@Url.Action("Page", "Books", new { pageNum = @ViewBag.PreviousPage })" title="Back" style="display:@ViewBag.ShowBackButtonVisible">
+                    <img src="@Url.Content("~/Images/BackButton.jpg")" />
+                </a>
+            </div>
+        </td>
+    </tr>
+
+</table>
+@Scripts.Render("~/bundles/fancybox")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".fancybox").fancybox({
+            openEffect: 'none',
+            closeEffect: 'none',
+            helpers: {
+                title: {
+                    type: 'outside'
+                }
+            }
+        });
+    });
+</script>

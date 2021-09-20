@@ -1,0 +1,64 @@
+﻿@model IEnumerable<AdamFWatkins.Models.Gallery>
+
+<div id="gallery-overlay">
+    <div id="gallery-destination"></div>
+    <div id="gallery-previous">
+        <i class="fa fa-chevron-left fa-2x"></i>
+    </div>
+    <div id="gallery-next">
+        <i class="fa fa-chevron-right fa-2x"></i>
+    </div>
+    <div id="gallery-close">
+        <i class="fa fa-times fa-2x"></i>
+    </div>
+    <div id="gallery-more">
+        <i class="fa fa-file-text fa-2x"></i>
+    </div>
+    <div id="gallery-loading">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+</div>
+<!--End Gallery Overlay-->
+<div class="container">
+    <div class="row margin-top-30">
+        <ul id="isotope_filters" class="gallery-menu col-xs-12">
+            <li><a href="#" data-filter=".featured">All</a></li>
+            <li><a href="#" data-filter=".illustration">Illustrations</a></li>
+            <li><a href="#" data-filter=".sketch">Sketches</a></li>
+            <div id="isotope_filtersbar"></div>
+        </ul>
+    </div>
+</div>
+<!--End Gallery Menu-->
+
+<div id="isotope_container" class="gallery-container">
+ 
+    @foreach (var item in @Model)
+    {
+        
+        <div class="gallery-item element @item.Category.Trim().ToLower()">
+            <div class=" gallery-cover"></div>
+            <div class="gallery-description">
+                <i class="fa fa-plus fa-2x gallery-icon"></i>
+            </div>
+            <img src="@Url.Content("~/Images/Illustrations/Full/" + @item.fullImage.Trim())" />
+            <div class="gallery-expand">
+                <img src="@Url.Content("~/Images/Illustrations/Full/" + @item.fullImage.Trim())" />
+                <div class="gallery-text">
+                    <h3>@item.title.Trim()</h3>
+                    <p>@item.description.Trim()</p>
+                </div>
+            </div>
+        </div>
+        
+    }
+
+ 
+</div>
+<!--End Gallery Content-->

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AdamFWatkins.Models.Sketch>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Sketches Administration";
+
+}
+
+ 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myDataTable').dataTable({
+            "bPaginate": false,
+            "bFilter": false
+        }).rowReordering({
+            sURL: "@Url.Action("UpdateOrder", "Sketches")" //"/Sketches/UpdateOrder", 
+        });
+    });
+
+</script>
+
+
+<h2>Edit Sketches</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="myDataTable">
+
+    <thead>
+        <tr>
+            <td>Order</td>
+            <td>Preview</td>
+            <td>Description</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.id"  >
+                <td>
+                    @item.displayOrder
+                </td>
+                <td>
+
+                    <img src="@Url.Content("~/Images/Sketches/thumbs/")@item.thumbnail.Trim()" alt="@item.thumbnail.Trim()" title="@item.thumbnail.Trim()" height="65" width="60" />
+
+                </td>
+                <td class="AdminDescription">
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+ 
+
+                <td class="AdminActions">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @*            @Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

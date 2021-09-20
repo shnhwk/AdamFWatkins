@@ -1,0 +1,60 @@
+﻿@model AdamFWatkins.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<table class="FullPaperTable">
+    <tr>
+        <td class="FullPaperLogoBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Adam F. Watkins", "Index", "Home", null, new { @class = "logo", @title = "Adam F. Watkins" })
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperMiddleBg">
+            <div class="TableCellPositionFix">
+                <div class="ContactContent">
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+
+@*<section id="externalLogins">
+    @Html.Action("RemoveExternalLogins")
+
+    <h3>Add an external login</h3>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperBottomBg">
+            <div class="TableCellPositionFix">
+                @Html.Partial("_SocialMediaLinks", new AdamFWatkins.Models.dbContext().SocialMediaLinks.ToList())
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperFooterBg">
+            <div class="TableCellPositionFix">
+                <div class="ExtraThumbtacks">
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

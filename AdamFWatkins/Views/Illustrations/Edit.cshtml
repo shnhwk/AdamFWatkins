@@ -1,0 +1,70 @@
+﻿@model AdamFWatkins.Models.Illustration
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Edit";
+ 
+}
+
+<h2>Edit</h2>
+
+@*@using (Html.BeginForm()) {*@
+
+
+@using (Html.BeginForm("Edit", "Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" })){
+
+
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Illustration</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+
+        <img src="@Url.Content("~/Images/Illustrations/thumbs/")@Model.thumbnail.Trim()" alt="@Model.thumbnail.Trim()" title="@Model.thumbnail.Trim()" />
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description, "Description")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.thumbnail, "New thumbnail")
+        </div>
+        <div class="editor-field">
+            <input type="file" name="imageThumb" />
+            @Html.ValidationMessageFor(model => model.thumbnail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fullImage, "New large image")
+        </div>
+        <div class="editor-field">
+            <input type="file" name="imageFull" />
+            @Html.ValidationMessageFor(model => model.fullImage)
+        </div>
+
+ 
+        @Html.HiddenFor(model => model.displayOrder) 
+        @Html.HiddenFor(model => model.thumbnail) 
+        @Html.HiddenFor(model => model.fullImage) 
+         
+ 
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Admin")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,80 @@
+﻿@model AdamFWatkins.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<table class="FullPaperTable">
+    <tr>
+        <td class="FullPaperLogoBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Adam F. Watkins", "Index", "Home", null, new { @class = "logo", @title = "Adam F. Watkins" })
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperMiddleBg">
+            <div class="TableCellPositionFix">
+                <div class="ContactContent">
+                    <section id="loginForm">
+                        <h2>Enter your username and password</h2>
+                        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <fieldset>
+                                <legend>Log in Form</legend>
+                                <ol>
+                                    <li>
+                                        @Html.LabelFor(m => m.UserName)
+                                        @Html.TextBoxFor(m => m.UserName)
+                                        @Html.ValidationMessageFor(m => m.UserName)
+                                    </li>
+                                    <li>
+                                        @Html.LabelFor(m => m.Password)
+                                        @Html.PasswordFor(m => m.Password)
+                                        @Html.ValidationMessageFor(m => m.Password)
+                                    </li>
+                                    <li>
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                                    </li>
+                                </ol>
+                                <input type="submit" value="Log in" />
+                            </fieldset>@*
+        <p>
+            @Html.ActionLink("Register", "Register") if you don't have an account.
+        </p>*@
+                        }
+                    </section>
+
+                    @*<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperBottomBg">
+            <div class="TableCellPositionFix">
+                @Html.Partial("_SocialMediaLinks", new AdamFWatkins.Models.dbContext().SocialMediaLinks.ToList())
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperFooterBg">
+            <div class="TableCellPositionFix">
+                <div class="ExtraThumbtacks">
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

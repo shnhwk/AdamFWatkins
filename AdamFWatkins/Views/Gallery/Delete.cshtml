@@ -1,0 +1,35 @@
+﻿@model AdamFWatkins.Models.Gallery
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Delete";
+ 
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this gallery item?</h3>
+<fieldset>
+    <legend>Sketch</legend>
+
+        <div class="display-field">
+        <img src="@Url.Content("~/Images/Illustrations/full/")@Model.fullImage.Trim()" alt="@Model.fullImage.Trim()" title="@Model.fullImage.Trim()"  />
+    </div>
+ 
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+ 
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fullImage)
+    </div>
+
+ 
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Admin")
+    </p>
+}

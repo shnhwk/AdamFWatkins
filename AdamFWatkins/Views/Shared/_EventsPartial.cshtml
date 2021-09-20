@@ -1,0 +1,74 @@
+﻿@model IEnumerable<AdamFWatkins.Models.SiteText>
+
+
+
+<div id="events" class="section margin-top-100">
+    <h3 class="section-height">Events</h3>
+</div>
+
+<!-- ****************************************** PARALLAX ICONS ****************************************** -->
+<div class="parallax1" style="position: relative;">
+    <div class="parallax-inner1">
+        <div class="container">
+            <!--Container-->
+            <div class="row margin-top-30">
+                <!--Row-->
+                <div class="ticket-button ticket-left"><i class="fa fa-chevron-left fa-lg"></i></div>
+                <div class="ticket-button ticket-right"><i class="fa fa-chevron-right fa-lg"></i></div>
+                <!--ICON 1-->
+                <div class="col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2 ticket" style="display: block;">
+                    <div class="s-a" data-effect="frombottom">
+                        <!--Animation-->
+                        <i class="fa fa-road fa-4x"></i>
+                        <h4 class="parallax-title">School Visits</h4>
+                        <p class="parallax-icon-paragraph">
+                            @Html.Raw(@Model.Where(l => l.key == "EventsSchoolVisits").FirstOrDefault().text.Trim())
+                        </p>
+                    </div><!--Animation End-->
+                </div>
+                <!--END ICON 1-->
+                <!--ICON 2-->
+                <div class="col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2 ticket">
+                    <div class="s-a" data-effect="frombottom" data-delay="100">
+                        <!--Animation-->
+                        <i class="fa fa-book fa-4x"></i>
+                        <h4 class="parallax-title">Book Signings</h4>
+                        <p class="parallax-icon-paragraph">
+                            @Html.Raw(@Model.Where(l => l.key == "EventsBookSignings").FirstOrDefault().text.Trim())
+                        </p>
+                    </div><!--Animation End-->
+                </div>
+                <!--END ICON 2-->
+                <!--ICON 3-->
+                <div class="col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2 ticket">
+                    <div class="s-a" data-effect="frombottom" data-delay="200">
+                        <!--Animation-->
+                        <i class="fa fa-star fa-4x"></i>
+                        <h4 class="parallax-title">Book Releases</h4>
+                        <p class="parallax-icon-paragraph">
+                            @Html.Raw(@Model.Where(l => l.key == "EventsBookReleases").FirstOrDefault().text.Trim())
+                        </p>
+                    </div><!--Animation End-->
+                </div>
+                <!--END ICON 3-->
+               
+            
+             @*<!--ICON 4-->
+                <div class="col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 ticket">
+                    <div class="s-a" data-effect="frombottom" data-delay="300">
+                        <!--Animation-->
+                        <i class="fa fa-rocket fa-4x"></i>
+                        <h4 class="parallax-title">Miscellaneous</h4>
+                        <p class="parallax-icon-paragraph">
+                            @Html.Raw(@Model.Where(l => l.key == "EventsMisc").FirstOrDefault().text.Trim())
+                        </p>
+                    </div><!--Animation End-->
+                </div>
+                <!--END ICON 4-->*@
+
+
+
+            </div><!--Row End-->
+        </div><!--Container End-->
+    </div><!--parallax-inner End-->
+</div><!--parallax1 End-->

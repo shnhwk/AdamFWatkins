@@ -1,0 +1,132 @@
+﻿@model IEnumerable<AdamFWatkins.Models.Book>
+
+
+@*@foreach (var item in @Model)
+    {
+        <div class="col-md-6">
+
+
+
+            <a href="@Url.Action("View", "Books", new { id = item.id, booktitle = item.title.Trim().Replace(" ", "-").Replace(":","") })" title="View @item.title.Trim()">
+                <img src="@Url.Content("~/Images/Books/Thumbs/")@item.thumbNail.Trim()" alt="@item.title.Trim()" />
+            </a>
+
+        </div>
+    }*@
+
+
+
+
+@*<div class="gallery-item element @item.Category.Trim().ToLower()">
+        <div class=" gallery-cover"></div>
+        <div class="gallery-description">
+            <i class="fa fa-plus fa-2x gallery-icon"></i>
+        </div>
+        <img src="@Url.Content("~/Images/Illustrations/Full/" + @item.fullImage.Trim())" />
+        <div class="gallery-expand">
+            <img src="@Url.Content("~/Images/Illustrations/Full/" + @item.fullImage.Trim())" />
+            <div class="gallery-text">
+                <h3>@item.title.Trim()</h3>
+                <p>@item.description.Trim()</p>
+            </div>
+        </div>
+    </div>*@
+
+
+<div class="col-md-12 margin-top-90">
+    <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="" id="myCarousel">
+        <div class="carousel-inner">
+
+            @{var cnt = 1; var css = "";}
+
+            @foreach (var item in @Model)
+            {
+
+                if (cnt == 1)
+                {
+                    css = "active";
+                }
+                else
+                {
+                    css = "";
+                }
+                <div class="item @css">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <a href="#" data-toggle="modal" data-target="#modal@(item.id)">
+                            <img src="@Url.Content("~/Images/Books/Thumbs/" + @item.thumbNail.Trim())" class="img-responsive" />
+                        </a>
+                        <h3>@item.title.Trim()</h3>
+                        <p>
+                            <a href="#" data-toggle="modal" data-target="#modal@(item.id)">More Info</a>
+                        </p>
+                        <p>
+                            <a href="#" data-toggle="modal" data-target="#modalimages@(item.id)">Sneak Peek</a>
+                        </p>
+
+
+
+                        <!-- Modal -->
+                        <div class="modal fade book-modal" id="modal@(item.id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-2x"></i></button>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>@item.title.Trim()</h3>
+                                        
+                                        @Html.Raw(@item.text.Trim())
+
+                                        <p>&nbsp;</p>
+                                        <p>Purchase on <span class="dashed-border"><a target="_blank" href="@item.purchaseUrl3.Trim()">Indiebound</a></span></p>
+                                        <p>&nbsp;</p>
+                                        <p>Purchase on <span class="dashed-border"><a target="_blank" href="@item.purchaseUrl4.Trim()">Joseph Beth</a></span></p>
+
+                                        <p>&nbsp;</p>
+                                        <p>Purchase on <span class="dashed-border"><a target="_blank" href="@item.purchaseUrl2.Trim()">Barnes &amp; Noble</a></span></p>
+                                        <p>&nbsp;</p>
+
+                                        <p>Purchase on <span class="dashed-border"><a target="_blank" href="@item.purchaseUrl.Trim()">Amazon</a></span></p>
+                                      
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade book-modal" id="modalimages@(item.id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-2x"></i></button>
+
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="slider-wrapper theme-default">
+                                            <div id="book-slider@(item.id)" class="book-slider nivoSlider">
+                                                @foreach (var t in item.bookThumbs)
+                                                {
+                                                    <img src="~/Images/Books/Full/@t.fullImage.Trim()"  alt="" /> @*data-thumb="@Url.Content("~/Images/Books/thumbs/" + @t.thumbnail.Trim())"*@
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                
+                cnt++;
+            }
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left fa-2x"></i></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right fa-2x"></i></a>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<AdamFWatkins.Models.SiteText>
+
+
+
+
+
+<div class="container text-center">
+    <!--Container-->
+
+    <div class="row">
+        <!--Row-->
+        <div class="sub-section-border margin-top-40 col-md-10 col-md-offset-1">
+            <h3 class="sub-section-height">
+                @Html.Raw(@Model.Where(l => l.key == "ContactTop").FirstOrDefault().text.Trim())
+                @*We have satisfied <b class="color">all of our consumers.</b><br>Aenean sollicitudin proin gravida nibh vel velit auctor aliquet.*@
+            </h3>
+        </div>
+    </div><!--Row End-->
+    @*<div class="row margin-top-30">
+            <!--Row-->
+            <div class="col-md-12">
+                <p class="paragraph">
+
+                @Html.Raw(@Model.Where(l => l.key == "ContactBottom").FirstOrDefault().text.Trim())
+                </p>
+            </div>
+        </div><!--Row End-->*@
+    <form id="contact-form" action="@Url.Content("~/Contact/SendEmail")" novalidate>
+        <div class="row">
+            <!--Row-->
+            <div class="col-md-6 margin-top-60">
+                <input type="text" name="name" class="form-control contact-height requiredField" data-error-empty="Name is required" placeholder="Name (Required)">
+            </div>
+            <div class="col-md-6 margin-top-60">
+
+                <input type="email" name="email" class="form-control contact-height requiredField" data-error-empty="Email is required" data-error-invalid="Invalid Email" placeholder="Email (Required)">
+            </div>
+        </div><!--Row End-->
+
+        <div class="row margin-top-60">
+            <!--Row-->
+            <div class="col-md-12">
+                <input type="text" name="subject" class="form-control contact-height requiredField" data-error-empty="Subject is required" placeholder="Subject">
+            </div>
+
+        </div><!--Row End-->
+
+
+
+        <div class="row margin-top-60">
+            <div class="col-md-12">
+                <textarea name="message" class="form-control requiredField" data-error-empty="Message is required" rows="4" placeholder="Your Message"></textarea>
+            </div>
+        </div>
+
+        <div class="row margin-top-60">
+            <div class="col-md-12">
+                <div class="g-recaptcha" data-sitekey="6LdcaxMTAAAAALY_AvZfUc3a_Jrt2Wskya5oL_FS"></div>
+            </div>
+        </div>
+
+        <div class="row margin-top-60">
+            <div class="col-md-12">
+                <button type="submit" name="submit" class="btn btn-primary btn-lg contact-button " data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent"><b>Send Message</b></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function SendMessage() {
+
+    }
+</script>

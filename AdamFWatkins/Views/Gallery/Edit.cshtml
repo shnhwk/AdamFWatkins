@@ -1,0 +1,85 @@
+﻿@model AdamFWatkins.Models.Gallery
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Edit";
+
+}
+
+<h2>Edit</h2>
+
+@*@using (Html.BeginForm()) {*@
+
+
+@using (Html.BeginForm("Edit", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Illustration</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+
+        <img src="@Url.Content("~/Images/Illustrations/full/")@Model.fullImage.Trim()" alt="@Model.fullImage.Trim()" title="@Model.fullImage.Trim()" />
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description, "Description")
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        @Html.DropDownListFor(
+            model => model.Category,
+        new SelectList(
+        new List<object>
+            {
+            new { value = "featured illustration" , text = "Featured Illustration"  },
+            new { value = "featured sketch" , text = "Featured Sketch"  },
+            new { value = "illustration" , text = "Illustration"  },
+            new { value = "sketch" , text = "Sketch" }
+            },
+            "value",
+            "text",
+            Model.Category
+            )
+        )
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fullImage, "New image")
+        </div>
+        <div class="editor-field">
+            <input type="file" name="imageFull" />
+            @Html.ValidationMessageFor(model => model.fullImage)
+        </div>
+
+        @Html.HiddenFor(model => model.displayOrder)
+        @Html.HiddenFor(model => model.fullImage)
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Admin")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

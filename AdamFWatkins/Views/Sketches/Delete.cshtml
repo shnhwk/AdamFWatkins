@@ -1,0 +1,47 @@
+﻿@model AdamFWatkins.Models.Sketch
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Delete";
+ 
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this sketch?</h3>
+<fieldset>
+    <legend>Sketch</legend>
+
+        <div class="display-field">
+        <img src="@Url.Content("~/Images/Sketches/thumbs/")@Model.thumbnail.Trim()" alt="@Model.thumbnail.Trim()" title="@Model.thumbnail.Trim()"  />
+    </div>
+ 
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+ 
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fullImage)
+    </div>
+
+@*    <div class="display-label">
+         @Html.DisplayNameFor(model => model.displayOrder)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.displayOrder)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.isDeleted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isDeleted)
+    </div>*@
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Admin")
+    </p>
+}

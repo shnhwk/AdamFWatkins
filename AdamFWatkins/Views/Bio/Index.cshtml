@@ -1,0 +1,59 @@
+﻿@model AdamFWatkins.Models.SiteText
+
+@{
+    ViewBag.Title = "About Adam F Watkins";
+}
+
+@section BadgeContent{
+
+    <div class="RedsGuy">
+       <img src="~/Images/RedsGuy.png" />
+    </div>
+
+}
+ 
+<table class="FullPaperTable">
+    <tr>
+        <td class="FullPaperLogoBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Adam F. Watkins", "Index", "Home" ,null, new { @class="logo", @title="Adam F. Watkins"})
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperMiddleBg">
+            <div class="TableCellPositionFix">
+                <div class="BioContent SlantedText">
+
+
+                    @Html.Raw(@Model.text)
+
+
+                 </div>
+              @*  <div class="BioPirate">
+                </div>*@
+                <div class="BioNinja">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperBottomBg">
+            <div class="TableCellPositionFix">
+                @*<a href="http://www.facebook.com" class="facebook" target="_blank" title="Find me on Facebook"></a>
+                <a href="http://www.twitter.com" class="twitter" target="_blank" title="Follow me on Twitter"></a>*@
+
+                 @Html.Partial("_SocialMediaLinks", new AdamFWatkins.Models.dbContext().SocialMediaLinks.ToList())
+
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperFooterBg">
+            <div class="TableCellPositionFix">
+                <div class="ExtraThumbtacks">
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+
+        <script src="~/ckeditor/ckeditor.js"></script>
+
+    </head>
+    <body>
+        <header>
+            <div class="header-content-wrapper">
+                <div class="menu-container">
+@*                   <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>*@
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Illustrations", "Index", "Illustrations")</li>
+                            <li>@Html.ActionLink("Sketches", "Index", "Sketches")</li>
+
+                            <li>@Html.ActionLink("Books", "Index", "Books")
+                            <li>
+                               <a href="http://adamfwatkinsblog.tumblr.com/" target="_blank">Blog</a>
+                            </li>
+                            <li>@Html.ActionLink("Bio", "Index", "Bio")</li>
+
+                            <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
+                            
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div id="body">
+
+            <div class="content-wood-top">
+                <div class="BadgeBg">
+                    @RenderSection("BadgeContent", required: false)
+                </div>
+            </div>
+            <div class="content-wood-left">
+                   <div class="content-wood-Lure">
+
+                   </div>
+            </div>
+            <div class="content-corkboard">
+                
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+            <div class="content-wood-right">
+            </div>
+            <div class="content-wood-bottom">
+            </div>
+  
+        </div>
+
+        <footer>
+            <div class="content-wrapper">
+                <div class="copyright">
+                    &copy; @DateTime.Now.Year Adam F Watkins Illustration &nbsp; @Html.Partial("_LoginPartial")
+                </div>
+                <div class="dsignelixir">
+                    <a href="http://www.dsignelixir.com/" target="_blank" title="Design by D'sign Elixir">
+                        <img src="~/Images/DsignElixir.png" alt="Design by D'sign Elixir" />
+                    </a>
+
+                    
+                </div>
+            </div>
+        </footer>
+        
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

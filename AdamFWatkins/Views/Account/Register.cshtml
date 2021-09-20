@@ -1,0 +1,73 @@
+﻿@model AdamFWatkins.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<table class="FullPaperTable">
+    <tr>
+        <td class="FullPaperLogoBg">
+            <div class="TableCellPositionFix">
+                @Html.ActionLink("Adam F. Watkins", "Index", "Home", null, new { @class = "logo", @title = "Adam F. Watkins" })
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperMiddleBg">
+            <div class="TableCellPositionFix">
+                <div class="ContactContent">
+
+                    <hgroup class="title">
+
+                        <h2>Create a new account.</h2>
+                    </hgroup>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary()
+
+                        <fieldset>
+                            <legend>Registration Form</legend>
+                            <ol>
+                                <li>
+                                    @Html.LabelFor(m => m.UserName)
+                                    @Html.TextBoxFor(m => m.UserName)
+                                </li>
+                                <li>
+                                    @Html.LabelFor(m => m.Password)
+                                    @Html.PasswordFor(m => m.Password)
+                                </li>
+                                <li>
+                                    @Html.LabelFor(m => m.ConfirmPassword)
+                                    @Html.PasswordFor(m => m.ConfirmPassword)
+                                </li>
+                            </ol>
+                            <input type="submit" value="Register" />
+                        </fieldset>
+                    }
+
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperBottomBg">
+            <div class="TableCellPositionFix">
+                @Html.Partial("_SocialMediaLinks", new AdamFWatkins.Models.dbContext().SocialMediaLinks.ToList())
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="fullPaperFooterBg">
+            <div class="TableCellPositionFix">
+                <div class="ExtraThumbtacks">
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

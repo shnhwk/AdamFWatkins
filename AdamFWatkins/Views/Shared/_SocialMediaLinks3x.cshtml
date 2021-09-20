@@ -1,0 +1,9 @@
+﻿@model IEnumerable<AdamFWatkins.Models.SocialMediaLink>
+@*<a href="@Model.Where(l => l.key == "Facebook").FirstOrDefault().link.Trim()" class="facebook" target="_blank" title="Find me on Facebook"></a>
+<a href="@Model.Where(l => l.key == "Twitter").FirstOrDefault().link.Trim()" class="twitter" target="_blank" title="Follow me on Twitter"></a>*@
+
+
+<a href="@Model.Where(l => l.key == "Facebook").FirstOrDefault().link.Trim()" target="_blank" class="footer-icon"><i class="fa fa-facebook fa-3x team-social-icon"></i></a>
+<a href="@Model.Where(l => l.key == "Twitter").FirstOrDefault().link.Trim()" target="_blank" class="footer-icon"><i class="fa fa-twitter fa-3x team-social-icon"></i></a>
+<a href="@Model.Where(l => l.key == "Instagram").FirstOrDefault().link.Trim()" target="_blank" class="footer-icon"><i class="fa fa-instagram fa-3x team-social-icon"></i></a>
+ 

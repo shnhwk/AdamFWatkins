@@ -1,0 +1,46 @@
+﻿@model AdamFWatkins.Models.Gallery
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+ 
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Illustration</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+ 
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fullImage)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fullImage)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.displayOrder)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.displayOrder)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.isDeleted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isDeleted)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Admin")
+</p>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AdamFWatkins.Models.SiteText>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Index";
+ 
+}
+
+<h2>Index</h2>
+
+<p>
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.key)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.text)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="AlignTop">
+            @Html.DisplayFor(modelItem => item.key)
+        </td>
+        <td>
+            @Html.Raw(item.text)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
